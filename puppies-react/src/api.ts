@@ -29,6 +29,17 @@ export const addPuppy = async (data: FormInput): Promise<void> => {
     }
 }
 
+export const editPuppy = async (id: number, data: FormInput): Promise<void> => {
+    const response = await fetch('http://localhost:4000/api/puppies/' + id, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' },
+    });
+    if (!response.ok) {
+        throw Error('Error while updating puppy');
+    }
+}
+
 export const deletePuppy = async (id: number): Promise<void> => {
     const response = await fetch('http://localhost:4000/api/puppies/' + id, {
         method: 'DELETE'
